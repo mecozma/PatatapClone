@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Circles</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+    </style>
+    <!-- Load the Paper.js Library -->
+    <script src="assets/lib/paper-full.js"></script>
+    <!-- Define inlined PaperScript associate it with myCanvas -->
+    <script type="text/paperscript" canvas="myCanvas">
+  
+    
+
+   /*
+   
+   for (var x = 0; x <= 1000; x += 100) {
+    for (var y = 0; y <= 1000; y += 100) {
+        new Path.Circle(new Point(x, y), 10).style = {
+                                                strokeColor: new Color(1, 0, 0),
+                                                strokeWidth: 3  
+                                             }
+    }
+}
+   */
+   var circles = [];
+ function onKeyDown() {
+    //Create a maximum point
+    var maxPoint = new Point(view.size.width, view.size.height);
+
+    //Create a random point
+    var randomPoint = Point.random();
+
+    //Create the point at which the circle will be shown
+    var point = maxPoint * randomPoint;
+
+     //Create a circle with styles
+     var newCircle = new Path.Circle(new Point(point, 10), 500);
+     newCircle.fillColor = 'yellow';
+    circles.push(newCircle);
+    console.log(circles.length);
+    console.log(circles);
+    
+    }
+ 
+
+    //The animation
+
+    function onFrame(event) {
+        // Each frame, change the fill color of the path slightly by
+        // adding 1 to its hue:
+        for (var i = 0; i < circles.length; i++) {
+            circles[i].fillColor.hue += 1;
+            circles[i].scale(.9);
+        }
+        
+    }
+
+
+
+
+       
+    </script>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+</body>
+</html>
